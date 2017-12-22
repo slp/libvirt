@@ -3481,6 +3481,9 @@
                         released
       coredump-restart: The crashed domain's core will be dumped, and then the
                         domain will be restarted with the same configuration
+      abort: A SIGABRT signal will be sent to the crashed domains. Depending on
+             the host configuration, this may produce a core dump from the
+             backing process.
     -->
   <define name="crashOptions">
     <choice>
@@ -3490,6 +3493,7 @@
       <value>rename-restart</value>
       <value>coredump-destroy</value>
       <value>coredump-restart</value>
+      <value>abort</value>
     </choice>
   </define>
   <!--

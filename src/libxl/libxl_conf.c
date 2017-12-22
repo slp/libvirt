@@ -2340,6 +2340,12 @@ libxlBuildDomainConfig(virPortAllocatorPtr graphicsports,
     if (libxlMakeVideo(def, d_config) < 0)
         return -1;
 
+    if (def->onCrash == VIR_DOMAIN_LIFECYCLE_ACTION_ABORT) {
+        virReportError(VIR_ERR_CONFIG_UNSUPPORTED, "%s",
+                       _("abort lifecycle action is not supported by libxl"));
+        return -1;
+    }
+
     d_config->on_reboot = libxlActionFromVirLifecycle(def->onReboot);
     d_config->on_poweroff = libxlActionFromVirLifecycle(def->onPoweroff);
     d_config->on_crash = libxlActionFromVirLifecycle(def->onCrash);

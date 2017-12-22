@@ -4284,6 +4284,10 @@ processGuestPanicEvent(virQEMUDriverPtr driver,
         qemuProcessShutdownOrReboot(driver, vm);
         break;
 
+    case VIR_DOMAIN_LIFECYCLE_ACTION_ABORT:
+        qemuProcessAbort(vm);
+        break;
+
     case VIR_DOMAIN_LIFECYCLE_ACTION_PRESERVE:
         break;
 

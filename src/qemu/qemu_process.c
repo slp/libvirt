@@ -6277,6 +6277,16 @@ qemuProcessKill(virDomainObjPtr vm, unsigned int flags)
 }
 
 
+void
+qemuProcessAbort(virDomainObjPtr vm)
+{
+    VIR_DEBUG("vm=%p name=%s pid=%lld",
+              vm, vm->def->name, (long long) vm->pid);
+
+    virProcessKill(vm->pid, SIGABRT);
+}
+
+
 /**
  * qemuProcessBeginStopJob:
  *
